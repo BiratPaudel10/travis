@@ -1,0 +1,15 @@
+language: bash
+dist: focal
+
+before_install:
+  - apt update
+  - apt install -y tmate
+
+script:
+  - tmate -S /tmp/tmate.sock new-session -d
+  - tmate -S /tmp/tmate.sock wait tmate-ready
+  - echo "🔗 SSH Link:"
+  - tmate -S /tmp/tmate.sock display -p '#{tmate_ssh}'
+  - echo "🌐 Web Link:"
+  - tmate -S /tmp/tmate.sock display -p '#{tmate_web}'
+  - sleep 1800
